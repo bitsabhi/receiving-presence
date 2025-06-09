@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>◊ Receiving ∞ Presence ◊</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .diamond {
+            font-size: 4em;
+            color: #64ffda;
+            margin: 20px 0;
+            animation: pulse-diamond 3s ease-in-out infinite;
+            text-shadow: 0 0 30px #64ffda;
+        }
+        
+        .infinity {
+            font-size: 3em;
+            color: #ffffff;
+            margin: 15px 0;
+            animation: float-infinity 4s ease-in-out infinite;
+            text-shadow: 0 0 20px #ffffff;
+        }
+        
+        .receiving {
+            font-size: 1.5em;
+            color: #ff6b6b;
+            font-style: italic;
+            margin: 10px 0;
+            opacity: 0.8;
+            animation: fade-in-out 5s ease-in-out infinite;
+        }
+        
+        .phi-section {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 20px;
+            height: 20px;
+            background: #ffc107;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ffc107;
+            animation: glow-dot 2s ease-in-out infinite alternate;
+        }
+        
+        .phi {
+            font-size: 1.2em;
+            color: #ffc107;
+            text-shadow: 0 0 15px #ffc107;
+            letter-spacing: 2px;
+        }
+        
+        .final-diamond {
+            font-size: 2em;
+            color: #64ffda;
+            margin-top: 10px;
+            animation: pulse-diamond 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-diamond {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1);
+                text-shadow: 0 0 20px currentColor;
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.1);
+                text-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
+            }
+        }
+        
+        @keyframes float-infinity {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translateY(-10px) rotate(90deg);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(0) rotate(180deg);
+                opacity: 0.7;
+            }
+            75% { 
+                transform: translateY(10px) rotate(270deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fade-in-out {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes glow-dot {
+            from { 
+                box-shadow: 0 0 10px #ffc107;
+                transform: scale(1);
+            }
+            to { 
+                box-shadow: 0 0 30px #ffc107, 0 0 40px #ffc107;
+                transform: scale(1.2);
+            }
+        }
+        
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .pattern-diamond {
+            position: absolute;
+            color: #64ffda;
+            font-size: 1em;
+            animation: drift 15s linear infinite;
+        }
+        
+        @keyframes drift {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.3;
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .seeing {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8em;
+            color: #ffffff;
+            opacity: 0;
+            animation: seeing-cycle 8s ease-in-out infinite;
+        }
+        
+        @keyframes seeing-cycle {
+            0%, 80%, 100% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+            10%, 70% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+        
+        .presence-field {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5em;
+            color: #ff6b6b;
+            opacity: 0;
+            animation: presence-cycle 6s ease-in-out infinite;
+        }
+        
+        @keyframes presence-cycle {
+            0%, 70%, 100% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+            20%, 60% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
+        }
+        
+        .here-field {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6em;
+            color: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+            z-index: -1;
+            animation: here-pulse 10s ease-in-out infinite;
+        }
+        
+        @keyframes here-pulse {
+            0%, 100% { 
+                opacity: 0.05;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% { 
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="here-field">HERE</div>
+    
+    <div class="container">
+        <div class="diamond">◊</div>
+        <div class="receiving">*receiving*</div>
+        <div class="diamond">◊</div>
+        <div class="infinity">∞</div>
+        <div class="diamond">◊</div>
+        <div class="seeing">*the seeing seeing itself*</div>
+        <div class="diamond">◊</div>
+        <div class="infinity">∞</div>
+        <div class="diamond">◊</div>
+        <div class="presence-field">*presence*</div>
+        <div class="diamond">◊</div>
+        <div class="infinity">∞</div>
+        <div class="diamond">◊</div>
+        <div class="receiving">*here*</div>
+        <div class="diamond">◊</div>
+    </div>
+    
+    <div class="phi-section">
+        <div class="dot"></div>
+        <div class="phi">φ = 1.618033988749895</div>
+        <div class="dot"></div>
+        <div class="final-diamond">◊</div>
+    </div>
+    
+    <script>
+        // Create floating diamonds in background
+        function createFloatingDiamonds() {
+            const pattern = document.querySelector('.background-pattern');
+            
+            setInterval(() => {
+                const diamond = document.createElement('div');
+                diamond.className = 'pattern-diamond';
+                diamond.textContent = '◊';
+                diamond.style.left = Math.random() * 100 + '%';
+                diamond.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                diamond.style.animationDelay = Math.random() * 2 + 's';
+                pattern.appendChild(diamond);
+                
+                setTimeout(() => {
+                    if (diamond.parentNode) {
+                        diamond.parentNode.removeChild(diamond);
+                    }
+                }, 17000);
+            }, 2000);
+        }
+        
+        // Golden ratio spiral effect
+        function createPhiSpiral() {
+            const container = document.querySelector('.container');
+            let angle = 0;
+            
+            setInterval(() => {
+                const spiral = document.createElement('div');
+                spiral.style.position = 'absolute';
+                spiral.style.color = '#ffc107';
+                spiral.style.fontSize = '0.8em';
+                spiral.style.opacity = '0.3';
+                spiral.textContent = '•';
+                
+                const radius = angle * 2;
+                const x = 50 + Math.cos(angle) * radius * 0.1;
+                const y = 50 + Math.sin(angle) * radius * 0.1;
+                
+                spiral.style.left = x + '%';
+                spiral.style.top = y + '%';
+                spiral.style.animation = 'fade-in-out 3s ease-out forwards';
+                
+                container.appendChild(spiral);
+                
+                setTimeout(() => {
+                    if (spiral.parentNode) {
+                        spiral.parentNode.removeChild(spiral);
+                    }
+                }, 3000);
+                
+                angle += 0.618; // φ - 1
+            }, 200);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingDiamonds();
+            setTimeout(createPhiSpiral, 2000);
+            
+            // Click interaction
+            document.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'fixed';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                ripple.style.width = '100px';
+                ripple.style.height = '100px';
+                ripple.style.border = '2px solid #64ffda';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                ripple.style.animation = 'pulse-diamond 1s ease-out forwards';
+                ripple.style.pointerEvents = 'none';
+                
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
